@@ -1,13 +1,13 @@
 <?php
 
-namespace MacPaw\LaravelCrowdinIntegration;
+namespace Maksi\LaravelCrowdinIntegration;
 
 use Illuminate\Support\ServiceProvider;
-use MacPaw\LaravelCrowdinIntegration\Commands\AddFile;
-use MacPaw\LaravelCrowdinIntegration\Commands\Build;
-use MacPaw\LaravelCrowdinIntegration\Commands\DownloadAll;
-use MacPaw\LaravelCrowdinIntegration\Commands\UpdateFile;
-use MacPaw\LaravelCrowdinIntegration\Commands\Upload;
+use Maksi\LaravelCrowdinIntegration\Commands\AddFile;
+use Maksi\LaravelCrowdinIntegration\Commands\Build;
+use Maksi\LaravelCrowdinIntegration\Commands\DownloadAll;
+use Maksi\LaravelCrowdinIntegration\Commands\UpdateFile;
+use Maksi\LaravelCrowdinIntegration\Commands\Upload;
 
 class CrowdinServiceProvider extends ServiceProvider
 {

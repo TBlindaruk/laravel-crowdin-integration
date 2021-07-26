@@ -1,9 +1,9 @@
 <?php
 
-namespace MacPaw\LaravelCrowdinIntegration\Commands;
+namespace Maksi\LaravelCrowdinIntegration\Commands;
 
 use ElKuKu\Crowdin\Crowdin;
-use MacPaw\LaravelCrowdinIntegration\BaseCommand;
+use Maksi\LaravelCrowdinIntegration\BaseCommand;
 
 class AddFile extends BaseCommand
 {
