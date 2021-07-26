@@ -59,22 +59,5 @@ class DownloadAll extends BaseCommand
         }
 
         unlink($destination . '.zip');
-        $this->rrmdir($destination);
-    }
-
-    protected function rrmdir($dir): void
-    {
-        $objects = $this->getFilesNameFromDir($dir);
-
-        foreach ($objects as $object) {
-            if (is_dir($dir . DIRECTORY_SEPARATOR . $object)) {
-                $this->rrmdir($dir . DIRECTORY_SEPARATOR . $object);
-            } else {
-                unlink($dir . DIRECTORY_SEPARATOR . $object);
-            }
-        }
-
-        reset($objects);
-        rmdir($dir);
     }
 }
