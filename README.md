@@ -4,21 +4,14 @@ Automate uploading/downloading translations
 
 Install the package via composer:
 
-```composer require macpaw/laravel-crowdin-integration --dev```
+```composer require maksi/laravel-crowdin-integration --dev```
 
 By default, the package uses the following environment variables
 ```
 CROWDIN_PROJECT_ID
 CROWDIN_API_KEY
 ```
-  
-## Config Files
 
-In order to edit the default configuration for this package you may execute:
-
-```
-php artisan vendor:publish --provider="MacPaw\LaravelCrowdinIntegration\CrowdinServiceProvider"
-```
 
 After that, `config/crowdin.php` will be created. Inside this file you will find all the fields that can be edited in this package.
 
@@ -56,3 +49,7 @@ Download translations files from Crowdin repository to your.
 ```
 php artisan crowdin:download
 ```
+
+### Thanks
+
+Forked from the https://packagist.org/packages/macpaw/laravel-crowdin-integration

@@ -1,6 +1,6 @@
 <?php
 
-namespace MacPaw\LaravelCrowdinIntegration;
+namespace Maksi\LaravelCrowdinIntegration;
 
 use ElKuKu\Crowdin\Languagefile;
 use Illuminate\Console\Command;

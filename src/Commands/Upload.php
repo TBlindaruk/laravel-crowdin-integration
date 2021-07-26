@@ -1,9 +1,9 @@
 <?php
 
-namespace MacPaw\LaravelCrowdinIntegration\Commands;
+namespace Maksi\LaravelCrowdinIntegration\Commands;
 
 use Exception;
-use MacPaw\LaravelCrowdinIntegration\BaseCommand;
+use Maksi\LaravelCrowdinIntegration\BaseCommand;
 
 class Upload extends BaseCommand
 {

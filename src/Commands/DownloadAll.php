@@ -1,13 +1,14 @@
 <?php
 
-namespace MacPaw\LaravelCrowdinIntegration\Commands;
+namespace Maksi\LaravelCrowdinIntegration\Commands;
 
 use ElKuKu\Crowdin\Crowdin;
 use Exception;
 use Illuminate\Support\Str;
-use MacPaw\LaravelCrowdinIntegration\BaseCommand;
+use Maksi\LaravelCrowdinIntegration\BaseCommand;
 use RuntimeException;
 use ZanySoft\Zip\Zip;
+use ZipArchive;
 
 class DownloadAll extends BaseCommand
 {
@@ -37,7 +38,7 @@ class DownloadAll extends BaseCommand
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    public function handle(ZipArchive $archive): void
     {
         $mapping = config('crowdin.mapping', null);
         $thisLangDir = base_path('resources') . '/lang';
@@ -50,37 +51,10 @@ class DownloadAll extends BaseCommand
         $this->crowdin->translation->download('all.zip', $destination . '.zip');
 
         try {
-            $zip = Zip::open($destination . '.zip');
-            $zip->extract($destination);
-            $zip->close();
+            $archive->extractTo(base_path('resources') . '/lang');
+
         } catch (Exception $exception) {
             throw new RuntimeException($exception->getMessage());
-        }
-
-        foreach ($mapping as $dirInProject => $langDir) {
-            $langDirFull = $thisLangDir . DIRECTORY_SEPARATOR . $dirInProject;
-            $crowdinLangDir = $destination . DIRECTORY_SEPARATOR . $langDir;
-            $crowdinDirFull = $dirInCrowdinProject ? $crowdinLangDir . DIRECTORY_SEPARATOR . $dirInCrowdinProject : $crowdinLangDir;
-
-            if (is_dir($langDirFull) || mkdir($langDirFull) || is_dir($langDirFull)) {
-                $langFiles = $this->getFilesNameFromDir($crowdinDirFull);
-                $this->info("Processing lang: " . $dirInProject . "\n");
-                $bar = $this->output->createProgressBar(count($langFiles));
-
-                foreach ($langFiles as $langFile) {
-                    if (is_file($crowdinDirFull . DIRECTORY_SEPARATOR . $langFile)) {
-                        copy(
-                            $crowdinDirFull . DIRECTORY_SEPARATOR . $langFile,
-                            $langDirFull . DIRECTORY_SEPARATOR . $langFile
-                        );
-                    }
-
-                    $bar->advance();
-                }
-
-                $bar->finish();
-                $this->line("\n");
-            }
         }
 
         unlink($destination . '.zip');
