@@ -51,6 +51,7 @@ class DownloadAll extends BaseCommand
         $this->crowdin->translation->download('all.zip', $destination . '.zip');
 
         try {
+            $archive->open($destination . '.zip');
             $archive->extractTo(base_path('resources') . '/lang');
 
         } catch (Exception $exception) {
